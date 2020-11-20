@@ -21,5 +21,9 @@ Esta funcionalidad sirve para tener un contador de cuanto tiempo llevas sin habl
 Esta funcionalidad todavía no está clara y en las proximas actualizaciones le daremos su función.
 
 
+### PLANIFICACION AGIL MEDIANTE UN TABLON TRELLO
+
+https://trello.com/b/krgMGmuA/proyecto-final-de-carrera
+
 
 
