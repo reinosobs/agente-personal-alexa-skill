@@ -2,6 +2,8 @@
 
 Esta skill es mi proyecto de final de grado, me gusta mucho hablar con mi agente convencional, Alexa, y se me ha ocurrido crear una skill personalizada para tener ayuda en varias tareas de mi vida corriente.
 
+Esta skill solo se puede ejecutar si la desarollas desde el host de Alexa debido a que la persistencia que utilizo son los servicios S3 y los cuales están en el propio Host.
+
 La skill mi agente personal, es una skill de Alexa con distintas funcionalidades:
 
 ## 1. Registrar fecha de cumpleaños y conocer el tiempo que queda para cumplir años
