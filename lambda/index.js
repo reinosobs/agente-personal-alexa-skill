@@ -3,7 +3,22 @@ const persistence = require('./persistence');
 const interceptors = require('./interceptors');
 const moment = require('moment-timezone'); // will help us do all the birthday math
 
-// these are the permissions needed to get the first name
+function sum(input){//Sumar un nuevo ingreso a mi limite de  gastos
+             
+ if (toString.call(input) !== "[object Array]")
+    return false;
+    var total =  0;
+    for(var i=0;i<input.length;i++)
+    {                  
+        if(isNaN(input[i])){
+            continue;
+        }
+            total += Number(input[i]);
+        }
+    return total;
+}
+
+// Los permisos que necesito para obtener el nombre del usuario
 const GIVEN_NAME_PERMISSION = ['alexa::profile:given_name:read'];
 
 const LaunchRequestHandler = {
@@ -14,10 +29,6 @@ const LaunchRequestHandler = {
         const {attributesManager, serviceClientFactory, requestEnvelope} = handlerInput;
         const requestAttributes = attributesManager.getRequestAttributes();
         const sessionAttributes = attributesManager.getSessionAttributes();
-
-        const day = sessionAttributes['day'];
-        const month = sessionAttributes['month'];
-        const year = sessionAttributes['year'];
 
         if(!sessionAttributes['name']){
             // let's try to get the given name via the Customer Profile API
@@ -42,10 +53,22 @@ const LaunchRequestHandler = {
                 }
             }
         }
+        
+        const nombre = sessionAttributes['nombreLlamada'] ? sessionAttributes['nombreLlamada']+'. ' : '';//Cojo el nombre de los atributos de sesion
+        
 
-        const name = sessionAttributes['name'] ? sessionAttributes['name'] : '';
+        let speechText;
+         if(sessionAttributes['name']){
+             
+            const name = sessionAttributes['name'];
+            speechText = requestAttributes.t('WELCOME_MSG',  name,nombre);
 
-        let speechText = requestAttributes.t('WELCOME_MSG', name);
+         }else{
+             return handlerInput.responseBuilder
+            .speak(requestAttributes.t('NAME_PERMISO'))
+            .withShouldEndSession(true)
+            .getResponse();  
+         }
 
         
         return handlerInput.responseBuilder
@@ -76,10 +99,12 @@ const RegisterBirthdayIntentHandler = {
         sessionAttributes['month'] = month;
         sessionAttributes['monthName'] = monthName;
         sessionAttributes['year'] = year;
+        
         const name = sessionAttributes['name'] ? sessionAttributes['name'] : '';
 
         return handlerInput.responseBuilder
             .speak(requestAttributes.t('REGISTER_MSG', name, day, monthName, year))
+            .withShouldEndSession(true)
             .getResponse();
     }
 };
@@ -113,6 +138,7 @@ const SayBirthdayIntentHandler = {
             } catch (error) {
                 return handlerInput.responseBuilder
                     .speak(requestAttributes.t('NO_TIMEZONE_MSG'))
+                    .withShouldEndSession(true)
                     .getResponse();
             }
             console.log('Got timezone: ' + timezone);
@@ -135,6 +161,7 @@ const SayBirthdayIntentHandler = {
         
         return handlerInput.responseBuilder
             .speak(speechText)
+            .withShouldEndSession(true)
             .getResponse();
     }
 };
@@ -198,6 +225,7 @@ const RegisterMoneyMounthIntentHandler = {
         }
         return handlerInput.responseBuilder
             .speak(speechText)
+            .withShouldEndSession(true)
             .getResponse();
 
     }
@@ -236,10 +264,236 @@ const BuyIntentHandler = {
             
         return handlerInput.responseBuilder
         .speak(speechText)
+        .withShouldEndSession(true)
         .getResponse();
         
     }
 };
+
+const IngresoIntentHandler = {
+    canHandle(handlerInput) {
+        return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+            && handlerInput.requestEnvelope.request.intent.name === 'IngresoIntent';
+    },
+    handle(handlerInput) {
+        const {attributesManager} = handlerInput;
+        const requestAttributes = attributesManager.getRequestAttributes();
+        const sessionAttributes = attributesManager.getSessionAttributes();
+        const {intent} = handlerInput.requestEnvelope.request;
+
+        //const total_money = intent.slots.total_money.value;
+        const ingreso = intent.slots.ingreso.value;
+        
+        
+        //var dinero_restante = total_money - gasto;
+        sessionAttributes['total_money'] = sum([sessionAttributes['total_money'],ingreso]);
+        sessionAttributes['ingreso'] = ingreso;
+       
+        const name = sessionAttributes['name'] ? sessionAttributes['name'] : '';
+        
+        /*if(sessionAttributes['total_money'] <= 0){
+            const speechText = requestAttributes.t('RED_NUMBERS_MSG',  name);
+            return handlerInput.responseBuilder
+            .speak(speechText)
+            .reprompt(speechText)
+            .getResponse();
+        }*/
+            
+        const speechText = requestAttributes.t('TOTAL_MSG', sessionAttributes['total_money']);
+            
+        return handlerInput.responseBuilder
+        .speak(speechText)
+        .withShouldEndSession(true)
+        .getResponse();
+        
+    }
+};
+
+const RegisterPersonCallIntentHandler = {
+    canHandle(handlerInput) {
+        return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+            && handlerInput.requestEnvelope.request.intent.name === 'RegisterPersonCallIntent';
+    },
+    async handle(handlerInput) {
+        const {attributesManager, serviceClientFactory, requestEnvelope} = handlerInput;
+        const sessionAttributes = attributesManager.getSessionAttributes();
+        const requestAttributes = attributesManager.getRequestAttributes();
+        const {intent} = handlerInput.requestEnvelope.request;
+        const deviceId = handlerInput.requestEnvelope.context.System.device.deviceId;
+        
+        let timezone;
+            
+        try {
+            const upsServiceClient = handlerInput.serviceClientFactory.getUpsServiceClient();
+            timezone = await upsServiceClient.getSystemTimeZone(deviceId);
+        } catch (error) {
+            return handlerInput.responseBuilder
+                .speak(requestAttributes.t('NO_TIMEZONE_MSG'))
+                .withShouldEndSession(true)
+                .getResponse();
+            }
+        //console.log('Got timezone: ' + timezone);
+        timezone = timezone ? timezone : 'Europe/Paris'; 
+        
+        
+        const nombre = intent.slots.nom_llamada.value;//Cojo el nombre que me ha dado
+        
+            
+        sessionAttributes['nombreLlamada'] = nombre;//Lo guardo en la sesion
+        
+        sessionAttributes['dias_sin_hablar'] = moment().tz(timezone).startOf('day');//Guardo el dia actual
+            
+        return handlerInput.responseBuilder//aqui digo que lo he registrado y cierro
+                .speak(requestAttributes.t('NOMBRE_REGISTRADO_MSG'))//Informo de que se ha registrado correctamente
+                .withShouldEndSession(true)
+                .getResponse();
+            
+       
+    }
+};
+
+const SayDaysWithoutCallIntentHandler = {
+    canHandle(handlerInput) {
+        return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+            && handlerInput.requestEnvelope.request.intent.name === 'SayDaysWithoutCallIntent';
+    },
+    async handle(handlerInput) {
+        const {attributesManager, serviceClientFactory, requestEnvelope} = handlerInput;
+        const sessionAttributes = attributesManager.getSessionAttributes();
+        const requestAttributes = attributesManager.getRequestAttributes();
+        const {intent} = handlerInput.requestEnvelope.request;
+        const deviceId = handlerInput.requestEnvelope.context.System.device.deviceId;
+        let timezone;
+            
+        try {
+            const upsServiceClient = handlerInput.serviceClientFactory.getUpsServiceClient();
+            timezone = await upsServiceClient.getSystemTimeZone(deviceId);
+        } catch (error) {
+            return handlerInput.responseBuilder
+                .speak(requestAttributes.t('NO_TIMEZONE_MSG'))
+                .withShouldEndSession(true)
+                .getResponse();
+            }
+            
+        timezone = timezone ? timezone : 'Europe/Paris'; 
+        
+        const nombre = sessionAttributes['nombreLlamada'];//Cojo el nombre de los atributos de sesion
+        
+        let speechText= requestAttributes.t('REGISTRAR_NOMBRE_MSG');//En caso de que no este el nombre, se pedira que se registre el nombre
+        
+        
+        if(nombre){//Si el nombre existe, se dirá los dias que llevan
+            
+            const today=moment().tz(timezone).startOf('day');//dia actual
+            
+            const diaLlamada = sessionAttributes['dias_sin_hablar'];
+            
+            const daysLeft = today.startOf('day').diff(diaLlamada, 'days');//dias que han pasado desde el primer dia hasta el actual
+            
+             speechText = requestAttributes.t(('DIAS_SIN_HABLAR_MSG'), daysLeft,nombre,nombre);
+            
+        }
+        
+        return handlerInput.responseBuilder
+                    .speak(speechText)
+                    .reprompt(speechText)
+                    .getResponse();
+            
+    
+    } 
+    
+};
+
+const YesIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.YesIntent';
+    },
+    async handle(handlerInput) {
+        const {attributesManager, serviceClientFactory, requestEnvelope} = handlerInput;
+        const sessionAttributes = attributesManager.getSessionAttributes();
+        const requestAttributes = attributesManager.getRequestAttributes();
+        const {intent} = handlerInput.requestEnvelope.request;
+        const deviceId = handlerInput.requestEnvelope.context.System.device.deviceId;
+        
+        let timezone;
+            
+        try {
+            const upsServiceClient = handlerInput.serviceClientFactory.getUpsServiceClient();
+            timezone = await upsServiceClient.getSystemTimeZone(deviceId);
+        } catch (error) {
+            return handlerInput.responseBuilder
+                .speak(requestAttributes.t('NO_TIMEZONE_MSG'))
+                .withShouldEndSession(true)
+                .getResponse();
+            }
+        //console.log('Got timezone: ' + timezone);
+        timezone = timezone ? timezone : 'Europe/Paris'; 
+      
+        sessionAttributes['dias_sin_hablar'] = moment().tz(timezone).startOf('day');//Guardo el dia actual
+        
+        return handlerInput.responseBuilder
+            .speak(requestAttributes.t('LLAMADA_HOY_MSG'))
+            .withShouldEndSession(true)
+            .getResponse();
+    }
+}
+
+const NoIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.NoIntent';
+    },
+    handle(handlerInput) {
+        const {attributesManager, serviceClientFactory, requestEnvelope} = handlerInput;
+        const requestAttributes = attributesManager.getRequestAttributes();
+        
+        const sessionAttributes = attributesManager.getSessionAttributes();
+      
+        const nombre = sessionAttributes['nombreLlamada'];
+      
+        return handlerInput.responseBuilder
+            .speak(requestAttributes.t(('SIN_HABLAR_MSG'),nombre))
+            .withShouldEndSession(true)
+            .getResponse();
+    }
+}
+
+const EstadoAnimicoIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'EstadoAnimicoIntent';
+    },
+    handle(handlerInput) {
+        const {attributesManager} = handlerInput;
+        const requestAttributes = attributesManager.getRequestAttributes();
+        const sessionAttributes = attributesManager.getSessionAttributes();
+        const {intent} = handlerInput.requestEnvelope.request;
+
+        //const total_money = intent.slots.total_money.value;
+        const estado = intent.slots.estado.resolutions.resolutionsPerAuthority[0].values[0].value.name;
+        
+        let speakOutput;
+        
+        if (estado === 'mal')
+            speakOutput=requestAttributes.t('ESTADO_MALO');
+        else if (estado === 'bien')
+            speakOutput=requestAttributes.t('ESTADO_BUENO');
+        else if (estado === 'aburrido')
+            speakOutput=requestAttributes.t('ESTADO_ABURRIDO');
+        else if (estado === 'enfadado')
+            speakOutput= requestAttributes.t('ESTADO_ENFADO');
+        else
+            speakOutput= 'Lo siento, no entiendo como puedo ayudarte. Intentare aprender mas formas para poderte ayudar en el futuro';
+        
+      
+        return handlerInput.responseBuilder
+            .speak(speakOutput + ' .Espero haberte ayudado con mi consejo')
+            .withShouldEndSession(true)
+            .getResponse();
+    }
+}
+    
 
 const HelpIntentHandler = {
     canHandle(handlerInput) {
@@ -275,6 +529,7 @@ const CancelAndStopIntentHandler = {
 
         return handlerInput.responseBuilder
             .speak(speechText)
+            .withShouldEndSession(true)
             .getResponse();
     }
 };
@@ -322,6 +577,7 @@ const IntentReflectorHandler = {
 
         return handlerInput.responseBuilder
             .speak(speechText)
+            .withShouldEndSession(true)
             //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
             .getResponse();
     }
@@ -356,6 +612,12 @@ exports.handler = Alexa.SkillBuilders.custom()
         SayMoneyIntentHandler,
         RegisterMoneyMounthIntentHandler,
         BuyIntentHandler,
+        IngresoIntentHandler,
+        RegisterPersonCallIntentHandler,
+        SayDaysWithoutCallIntentHandler,
+        YesIntentHandler,
+        NoIntentHandler,
+        EstadoAnimicoIntentHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         FallbackIntentHandler,
@@ -373,5 +635,3 @@ exports.handler = Alexa.SkillBuilders.custom()
     .withPersistenceAdapter(persistence.getPersistenceAdapter())
     .withApiClient(new Alexa.DefaultApiClient())
     .lambda();
-
-
