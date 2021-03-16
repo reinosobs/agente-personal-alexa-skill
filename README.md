@@ -18,9 +18,9 @@ La funcionalidad de registrar tu gasto previsto de mes, sirve para que cuando re
 
 Esta funcionalidad sirve para tener un contador de cuanto tiempo llevas sin hablar con cierta persona. Esta persona será registrada anteriormente y segun hables con esta persona, el contador volverá a 0 dias. Esto sirve para recordarte cuanto tiempo llevas sin hablar con tu mejor amig@ o con tu madre. En mitad de esta pandemia, no podemos olvidarnos de mantener el contacto con las personas que nos importan
 
-## 4. Conocer tus gustos
+## 4. Consejos
 
-Esta funcionalidad todavía no está clara y en las proximas actualizaciones le daremos su función.
+Esta funcionalidad tiene una serie de consejos, que dependiendo de como esté el usuario tendra un consejo u otro. Existen consejos de animo en caso de tristeza, consejos de enhorabuena en caso de felicitación y algunos tipos de consejos mas.
 
 
 ### PLANIFICACION AGIL MEDIANTE UN TABLON TRELLO
