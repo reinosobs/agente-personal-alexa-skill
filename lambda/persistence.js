@@ -4,18 +4,21 @@ module.exports = {
         function isAlexaHosted() {
             return process.env.S3_PERSISTENCE_BUCKET ? true : false;
         }
-        const tableName = 'happy_birthday_TFG_table';
+        const tableName = 'birthday_agend';
         if(isAlexaHosted()) {
             const {S3PersistenceAdapter} = require('ask-sdk-s3-persistence-adapter');
             return new S3PersistenceAdapter({ 
                 bucketName: process.env.S3_PERSISTENCE_BUCKET
             });
-        } /*else {
+        }/* else {
             // IMPORTANT: don't forget to give DynamoDB access to the role you're to run this lambda (IAM)
             const {DynamoDbPersistenceAdapter} = require('ask-sdk-dynamodb-persistence-adapter');
+            
             return new DynamoDbPersistenceAdapter({ 
                 tableName: tableName,
-                createTable: true
+                partitionKeyName: 'userId',
+                createTable: false,
+                
             });
         }*/
     }

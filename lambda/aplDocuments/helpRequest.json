@@ -1,0 +1,143 @@
+{
+    "type": "APL",
+    "version": "1.0",
+    "theme": "dark",
+    "import": [
+        {
+            "name": "alexa-viewport-profiles",
+            "version": "1.0.0"
+        },
+        {
+            "name": "alexa-layouts",
+            "version": "1.0.0"
+        },
+        {
+            "name": "alexa-styles",
+            "version": "1.0.0"
+        }
+    ],
+    "resources": [
+        {
+            "description": "Background image assets",
+            "when": "${@viewportProfile == @hubRoundSmall}",
+            "strings": {
+                "background": "https://i.ibb.co/CbV1bsJ/fondo-negro.jpg"
+            }
+        },
+        {
+            "description": "Background image assets",
+            "when": "${@viewportProfile == @hubLandscapeSmall || @viewportProfile == @hubLandscapeMedium || @viewportProfile == @hubLandscapeLarge}",
+            "strings": {
+                "background": "https://i.ibb.co/CbV1bsJ/fondo-negro.jpg"
+            }
+        },
+        {
+            "description": "Background image assets",
+            "when": "${@viewportProfile == @tvLandscapeXLarge}",
+            "strings": {
+                "background": "https://i.ibb.co/CbV1bsJ/fondo-negro.jpg"
+            }
+        }
+    ],
+    "layouts": {
+        "LaunchScreen": {
+            "description": "A basic launch screen with a text",
+            "parameters": [
+                {
+                    "name": "mainText",
+                    "type": "string"
+                }
+            ],
+            "items": [
+                {
+                    "type": "Container",
+                    "width": "100%",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "alignItems": "center",
+                    "item": [
+                        {
+                            "type": "Text",
+                            "text": "${mainText}",
+                            "style": "textStyleDisplay5",
+                            "paddingTop": "30dp",
+                            "paddingLeft": "30dp",
+                            "color": "white"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "items": [
+            {
+                "type": "Container",
+                "direction": "column",
+                "items": [
+                    {
+                        "type": "Image",
+                        "source": "@background",
+                        "scale": "best-fill",
+                        "width": "100vw",
+                        "height": "100vh",
+                        "position": "absolute",
+                        "overlayColor": "${payload.data.overlayColor}"
+                    },
+                    {
+                        "type": "Container",
+                        "position": "absolute",
+                        "width": "100vw",
+                        "height": "100vh",
+                        "direction": "column",
+                        "items": [
+                            {
+                                "headerTitle": "${payload.launchData.properties.headerTitle}",
+                                "type": "AlexaHeader"
+                            },
+                            {
+                                "when": "${@viewportProfile == @hubRoundSmall}",
+                                "type": "Container",
+                                "width": "100vw",
+                                "height": "70vh",
+                                "position": "relative",
+                                "alignItems": "center",
+                                "justifyContent": "center",
+                                "direction": "column",
+                                "items": [
+                                    {
+                                        "type": "LaunchScreen",
+                                        "mainText": "${payload.launchData.properties.mainText}"
+                                    }
+                                ]
+                            },
+                            {
+                                "when": "${@viewportProfile == @hubLandscapeSmall || @viewportProfile == @hubLandscapeMedium || @viewportProfile == @hubLandscapeLarge}",
+                                "type": "Container",
+                                "width": "100vw",
+                                "height": "70vh",
+                                "direction": "column",
+                                "alignItems": "center",
+                                "justifyContent": "center",
+                                "items": [
+                                    {
+                                        "type": "LaunchScreen",
+                                        "mainText": "${payload.launchData.properties.mainText}"
+                                    }
+                                ]
+                            },
+                            {
+                                "footerHint": "${payload.launchData.properties.hintString}",
+                                "type": "AlexaFooter",
+                                "when": "${@viewportProfile == @hubLandscapeSmall || @viewportProfile == @hubLandscapeMedium || @viewportProfile == @hubLandscapeLarge}"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

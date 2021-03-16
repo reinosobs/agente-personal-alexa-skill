@@ -1,0 +1,11 @@
+{
+    "launchData": {
+        "properties":{
+            "headerTitle": "Mi agente personal",
+            "backgroundImage": "https://i.ibb.co/CbV1bsJ/fondo-negro.jpg",
+            "mainText": "300 euros",
+            "hintString": "Di: \"Ver opciones\" para volver atrás",
+            "colorHandler": "#3498db"
+        }
+    }
+}

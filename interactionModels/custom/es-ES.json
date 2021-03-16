@@ -1,0 +1,1170 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "mi agente personal",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": [
+            "nada mas",
+            "por ahora nada",
+            "nada más",
+            "en nada mas",
+            "gracias",
+            "no quiero nada",
+            "salir",
+            "en nada",
+            "nada"
+          ]
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "RegisterBirthdayIntent",
+          "slots": [
+            {
+              "name": "day",
+              "type": "AMAZON.NUMBER",
+              "samples": [
+                "el día {day}",
+                "{day}",
+                "el {day}"
+              ]
+            },
+            {
+              "name": "month",
+              "type": "TipoMes",
+              "samples": [
+                "{month}",
+                "en {month}"
+              ]
+            },
+            {
+              "name": "year",
+              "type": "AMAZON.FOUR_DIGIT_NUMBER",
+              "samples": [
+                "de {year}",
+                "del {year}",
+                "he nacido en el {year}",
+                "he nacido en el año {year}",
+                "año {year}",
+                "en el {year}",
+                "en el año {year}",
+                "el año {year}",
+                "{year}"
+              ]
+            }
+          ],
+          "samples": [
+            "mi fecha de nacimiento",
+            "registra mi fecha de nacimiento",
+            "{month} del {year}",
+            "{month} de {year}",
+            "{day} del {month}",
+            "en el año {year}",
+            "he nacido en {year}",
+            "para el {day} de {month}",
+            "con el {day} de {month}",
+            "para el {day} de {month} de {year}",
+            "con el {day} de {month} de {year}",
+            "mi fecha de nacimiento es el {day} de {month} de {year}",
+            "mi cumpleaños es el {day} de {month} de {year}",
+            "mi cumple es el {day} de {month} de {year}",
+            "mi cumpleaños es el {day} de {month}",
+            "mi cumple es el {day} de {month}",
+            "he nacido el {day} de {month} de {year}",
+            "{day} de {month} de {year}",
+            "cumplo el {day} de {month} de {year}",
+            "{day} de {month}",
+            "cumplo el {day} de {month}",
+            "cumplo el {day}",
+            "cumplo en {month}",
+            "registra mi cumple",
+            "graba mi cumple",
+            "recuerda mi cumple",
+            "registra mi cumpleaños",
+            "recordar mi cumple",
+            "recordar mi cumpleaños",
+            "apunta mi cumple",
+            "apunta mi cumpleaños",
+            "toma nota de mi cumple",
+            "toma nota de mi cumpleaños",
+            "anota mi cumple",
+            "anota mi cumpleaños",
+            "graba mi cumpleaños",
+            "recuerda mi cumpleaños"
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "SayBirthdayIntent",
+          "slots": [],
+          "samples": [
+            "cumple",
+            "mi cumpleaños",
+            "cumpleaños",
+            "mi cumple",
+            "cuando cumplo años",
+            "cuando cumplo",
+            "cuanto falta",
+            "cuanto falta para mi cumpleaños",
+            "cuanto falta para mi cumple",
+            "cuanto queda para mi cumpleaños",
+            "cuanto queda para mi cumple",
+            "tiempo restante para mi cumpleaños",
+            "tiempo restante para mi cumple",
+            "dame mi cumpleaños",
+            "dame mi cumple",
+            "cuando es mi cumpleaños",
+            "cuando es mi cumple",
+            "dime mi cumpleaños",
+            "dime mi cumple",
+            "dime cuando cumplo años",
+            "dime cuando cumplo",
+            "dime cuanto falta",
+            "dime cuanto falta para mi cumpleaños",
+            "dime cuanto falta para mi cumple",
+            "dime cuanto queda",
+            "dime cuanto queda para mi cumpleaños",
+            "dime cuanto queda para mi cumple",
+            "dime cuando es mi cumpleaños",
+            "dime cuando es mi cumple"
+          ]
+        },
+        {
+          "name": "SayMoneyIntent",
+          "slots": [],
+          "samples": [
+            "ahorros",
+            "limite",
+            "limite de gastos",
+            "gastos personales",
+            "gestion de gastos",
+            "gastos",
+            "mis gastos mensuales",
+            "gastos mensuales",
+            "mis gastos",
+            "cuanto dinero me queda por gastar",
+            "cual es el total",
+            "cuanto me queda",
+            "cuanto queda"
+          ]
+        },
+        {
+          "name": "RegisterMoneyMounthIntent",
+          "slots": [
+            {
+              "name": "total_money",
+              "type": "AMAZON.NUMBER",
+              "samples": [
+                "seran {total_money}",
+                "son {total_money}",
+                "la cantidad es {total_money}",
+                "{total_money}"
+              ]
+            }
+          ],
+          "samples": [
+            "añadir limite",
+            "añadir límite de gastos",
+            "quiero añadir un limite de gastos",
+            "registra mi limite de gastos",
+            "registra limite de gastos",
+            "lo de los gastos",
+            "las cuentas",
+            "el limite",
+            "mi limite de gastos",
+            "registra mi límite de gastos",
+            "registra mis gastos mensuales",
+            "guarda el total que puedo gastar",
+            "registra mis gastos",
+            "seran {total_money} euros"
+          ]
+        },
+        {
+          "name": "BuyIntent",
+          "slots": [
+            {
+              "name": "gasto",
+              "type": "AMAZON.NUMBER",
+              "samples": [
+                "he gastado {gasto} euros",
+                "{gasto} euro",
+                "{gasto} euros",
+                "{gasto}"
+              ]
+            }
+          ],
+          "samples": [
+            "quiero restar {gasto} euros",
+            "quiero restar una cantidad",
+            "añadir gasto",
+            "añadir un nuevo gasto",
+            "añadir gasto nuevo",
+            "registra un gasto",
+            "registra un gasto nuevo",
+            "registra un nuevo gasto",
+            "restale {gasto} euros",
+            "restale {gasto} euros a mi total",
+            "me he gastado {gasto} euros",
+            "me he gastado {gasto}",
+            "quita {gasto} al total",
+            "quita {gasto}",
+            "resta {gasto}",
+            "he gastado",
+            "he gastado {gasto} euros",
+            "he gastado {gasto} euro"
+          ]
+        },
+        {
+          "name": "AMAZON.YesIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NoIntent",
+          "samples": []
+        },
+        {
+          "name": "RegisterPersonCallIntent",
+          "slots": [
+            {
+              "name": "nom_llamada",
+              "type": "AMAZON.FirstName",
+              "samples": [
+                "su nombre es {nom_llamada}",
+                "{nom_llamada}",
+                "se llama {nom_llamada}"
+              ]
+            },
+            {
+              "name": "dias_sin_hablar",
+              "type": "AMAZON.NUMBER"
+            }
+          ],
+          "samples": [
+            "añadir nuevo nombre",
+            "quiero añadir nuevo nombre",
+            "quiero añadir persona",
+            "quiero registrar una nueva persona",
+            "quiero añadir una nueva persona",
+            "añade una nueva persona",
+            "añade una persona",
+            "añade un nombre",
+            "añade un nuevo nombre",
+            "registra el nuevo nombre {nom_llamada}",
+            "registra el nombre de {nom_llamada}",
+            "registrar nombre",
+            "registrar nombre nuevo",
+            "registra un nuevo nombre",
+            "registra el nombre de nuevo",
+            "los dias son {dias_sin_hablar}",
+            "es llamado {nom_llamada}",
+            "el nombre es {nom_llamada}",
+            "su nombre es {nom_llamada}",
+            "se llama {nom_llamada}"
+          ]
+        },
+        {
+          "name": "SayDaysWithoutCallIntent",
+          "slots": [],
+          "samples": [
+            "cuantos días llevo sin hablar con alguien",
+            "cuantos dias llevo sin hablar con",
+            "cuantos dias",
+            "cuantos días",
+            "cuantos días han pasado desde",
+            "cuantos días llevo sin hablar con",
+            "cuanto tiempo llevo sin hablar con",
+            "cuanto hace que hable con",
+            "cuando hablé con ",
+            "sin hablar con",
+            "telefono",
+            "llamada",
+            "tiempo sin hablar",
+            "cuanto llevo sin hablar con ",
+            "cuanto tiempo paso",
+            "que tiempo ha pasado",
+            "cuanto tiempo ha pasado",
+            "cuanto tiempo llevo sin hablar",
+            "cuanto llevo sin hablar con ella",
+            "cuanto llevo sin hablar con el"
+          ]
+        },
+        {
+          "name": "IngresoIntent",
+          "slots": [
+            {
+              "name": "ingreso",
+              "type": "AMAZON.NUMBER",
+              "samples": [
+                "{ingreso}",
+                "serian {ingreso} euros",
+                "{ingreso} euros"
+              ]
+            }
+          ],
+          "samples": [
+            "sumar",
+            "quiero añadir un ingreso",
+            "quiero hacer un ingreso",
+            "añadir nuevo ingreso",
+            "añadir ingreso",
+            "nuevo ingreso",
+            "ingreso",
+            "registra ingreso",
+            "registra un nuevo ingreso",
+            "añade {ingreso} euros al total",
+            "sube {ingreso} euros a mi limite de gastos",
+            "suma {ingreso} euro",
+            "suma {ingreso} euros",
+            "suma {ingreso} euros a mi limite de gastos",
+            "añade {ingreso} euros a mi limite de gastos"
+          ]
+        },
+        {
+          "name": "EstadoAnimicoIntent",
+          "slots": [
+            {
+              "name": "estado",
+              "type": "estadoAnimico",
+              "samples": [
+                "{estado}",
+                "me siento {estado}",
+                "estoy {estado}"
+              ]
+            }
+          ],
+          "samples": [
+            "{estado}",
+            "dime un consejo",
+            "consejos",
+            "consejo",
+            "necesito un consejo",
+            "quiero un consejo",
+            "dame un consejo",
+            "me encuentro {estado}",
+            "me siento {estado}",
+            "estoy {estado}"
+          ]
+        },
+        {
+          "name": "NuevoConsejoIntent",
+          "slots": [
+            {
+              "name": "otro_estado",
+              "type": "estadoAnimico",
+              "samples": [
+                "me siento {otro_estado}",
+                "me encuentro {otro_estado}",
+                "estoy {otro_estado}",
+                "{otro_estado}"
+              ]
+            }
+          ],
+          "samples": [
+            "{otro_estado}  asi estoy",
+            "otro más",
+            "quiero otro",
+            "otro nuevo",
+            "dime otro",
+            "dime otro consejo",
+            "nuevo consejo",
+            "Otro consejo"
+          ]
+        },
+        {
+          "name": "AyudaCumple",
+          "slots": [],
+          "samples": [
+            "ayuda sobre mi fecha de nacimiento",
+            "ayuda sobre mi cumple",
+            "ayuda sobre cumple",
+            "ayuda sobre dias para mi cumpleaños",
+            "ayuda sobre cumpleaños",
+            "ayuda sobre mi cumpleaños"
+          ]
+        },
+        {
+          "name": "AyudaGastos",
+          "slots": [],
+          "samples": [
+            "ayuda sobre mi límite de gastos",
+            "ayuda sobre limite de gastos",
+            "ayuda sobre límite mensual",
+            "ayuda sobre limite mensual",
+            "ayuda sobre gastos mensuales",
+            "ayuda sobre el limite",
+            "ayuda sobre mi límite",
+            "ayuda sobre mi limite",
+            "ayuda sobre mis gastos",
+            "ayuda sobre gastos",
+            "ayuda sobre límite de gastos"
+          ]
+        },
+        {
+          "name": "AyudaTiempo",
+          "slots": [],
+          "samples": [
+            "ayuda sobre hablar con una persona",
+            "ayuda sobre tiempo sin hablar con alguien",
+            "ayuda sobre tiempo sin hablar con",
+            "ayuda sobre cuanto tiempo ha pasado",
+            "ayuda sobre cuanto hace que no hablo con",
+            "ayuda sobre sin hablar",
+            "ayuda sobre tiempo",
+            "ayuda sobre llamada",
+            "ayuda sobre tiempo sin hablar"
+          ]
+        },
+        {
+          "name": "AyudaConsejo",
+          "slots": [],
+          "samples": [
+            "ayuda sobre consejos",
+            "ayuda sobre mi estado anímico",
+            "ayuda sobre como estoy",
+            "ayuda sobre los consejos",
+            "ayuda sobre el consejo",
+            "ayuda sobre consejo"
+          ]
+        },
+        {
+          "name": "VolverAtrasIntent",
+          "slots": [],
+          "samples": [
+            "volver atrás",
+            "atrás",
+            "opciones",
+            "más opciones",
+            "Mas opciones",
+            "ver opciones"
+          ]
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "id": "12",
+              "name": {
+                "value": "diciembre"
+              }
+            },
+            {
+              "id": "11",
+              "name": {
+                "value": "noviembre"
+              }
+            },
+            {
+              "id": "10",
+              "name": {
+                "value": "octubre"
+              }
+            },
+            {
+              "id": "09",
+              "name": {
+                "value": "septiembre"
+              }
+            },
+            {
+              "id": "08",
+              "name": {
+                "value": "agosto"
+              }
+            },
+            {
+              "id": "07",
+              "name": {
+                "value": "julio"
+              }
+            },
+            {
+              "id": "06",
+              "name": {
+                "value": "junio"
+              }
+            },
+            {
+              "id": "05",
+              "name": {
+                "value": "mayo"
+              }
+            },
+            {
+              "id": "04",
+              "name": {
+                "value": "abril"
+              }
+            },
+            {
+              "id": "03",
+              "name": {
+                "value": "marzo"
+              }
+            },
+            {
+              "id": "02",
+              "name": {
+                "value": "febrero"
+              }
+            },
+            {
+              "id": "01",
+              "name": {
+                "value": "enero",
+                "synonyms": [
+                  "primero",
+                  "primer mes del año"
+                ]
+              }
+            }
+          ],
+          "name": "TipoMes"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "value": "miedo",
+                "synonyms": [
+                  "temblando de miedo",
+                  "asustada",
+                  "asustado",
+                  "temblando",
+                  "atemorizada",
+                  "atemorizado",
+                  "aterrada",
+                  "aterrado"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "enfermo",
+                "synonyms": [
+                  "revuelto",
+                  "revuelta",
+                  "agotado",
+                  "agotada",
+                  "jodida",
+                  "jodido",
+                  "mareado",
+                  "mareada",
+                  "resfriada",
+                  "resfriado",
+                  "enferma",
+                  "mala",
+                  "dolor",
+                  "fiebre",
+                  "covid",
+                  "malo",
+                  "malito"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "enfadado",
+                "synonyms": [
+                  "frustrada",
+                  "frustrado",
+                  "furiosa",
+                  "cabreada",
+                  "odiosa",
+                  "rabiosa",
+                  "enfurecida",
+                  "irascible",
+                  "estoy de mal humor",
+                  "estoy que muerdo",
+                  "enfurecido",
+                  "rabioso",
+                  "odioso",
+                  "caliente",
+                  "cabreado",
+                  "furioso"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "aburrido",
+                "synonyms": [
+                  "desganada",
+                  "desganado",
+                  "no sé que hacer",
+                  "no tengo nada que hacer",
+                  "me aburro"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "bien",
+                "synonyms": [
+                  "sorpresa",
+                  "sorprendida",
+                  "sorprendido",
+                  "impresionada",
+                  "impresionado",
+                  "buena",
+                  "positiva",
+                  "positivo",
+                  "bueno",
+                  "genial",
+                  "guay",
+                  "contenta",
+                  "emocionada",
+                  "entusiasmada",
+                  "super contenta",
+                  "super contento",
+                  "hoy tengo buenas sensaciones",
+                  "hoy va a ser un gran día",
+                  "tengo un dia estupendo",
+                  "hoy es mi dia",
+                  "radiante",
+                  "feliz",
+                  "que vuelo",
+                  "me encuentro mejor",
+                  "estoy mejor",
+                  "no estoy mal",
+                  "entusiasmado",
+                  "emocionado",
+                  "alegre",
+                  "contento"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "mal",
+                "synonyms": [
+                  "desagrado",
+                  "asqueado",
+                  "asqueada",
+                  "asco",
+                  "negativa",
+                  "malo",
+                  "mala",
+                  "reventada",
+                  "reventado",
+                  "pichipicha",
+                  "enfermo",
+                  "cansada",
+                  "agobiada",
+                  "nerviosa",
+                  "confusa",
+                  "no es un buen dia",
+                  "no tengo un buen dia",
+                  "apagada",
+                  "de bajon",
+                  "no estoy bien",
+                  "culpable",
+                  "confuso",
+                  "nervioso",
+                  "agobiado",
+                  "triste"
+                ]
+              }
+            }
+          ],
+          "name": "estadoAnimico"
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "RegisterBirthdayIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "day",
+              "type": "AMAZON.NUMBER",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.653974572406.1040382425372"
+              },
+              "validations": [
+                {
+                  "type": "isGreaterThanOrEqualTo",
+                  "prompt": "Slot.Validation.190694681136.1424851421300.1030431910159",
+                  "value": "1"
+                },
+                {
+                  "type": "isLessThanOrEqualTo",
+                  "prompt": "Slot.Validation.190694681136.1424851421300.837658517617",
+                  "value": "31"
+                }
+              ]
+            },
+            {
+              "name": "month",
+              "type": "TipoMes",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.282358190483.487594834711"
+              },
+              "validations": [
+                {
+                  "type": "hasEntityResolutionMatch",
+                  "prompt": "Slot.Validation.190694681136.463018349705.1461889218555"
+                }
+              ]
+            },
+            {
+              "name": "year",
+              "type": "AMAZON.FOUR_DIGIT_NUMBER",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1253554922892.1358447173887"
+              },
+              "validations": [
+                {
+                  "type": "isGreaterThan",
+                  "prompt": "Slot.Validation.1253554922892.1358447173887.1026742417738",
+                  "value": "1900"
+                },
+                {
+                  "type": "isLessThan",
+                  "prompt": "Slot.Validation.1253554922892.1358447173887.176185058059",
+                  "value": "2018"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "RegisterMoneyMounthIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "total_money",
+              "type": "AMAZON.NUMBER",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1411901666710.1009647479710"
+              },
+              "validations": [
+                {
+                  "type": "isGreaterThanOrEqualTo",
+                  "prompt": "Slot.Validation.1411901666710.1009647479710.1502057759086",
+                  "value": "1"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "BuyIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "gasto",
+              "type": "AMAZON.NUMBER",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.664346497820.1442373707323"
+              },
+              "validations": [
+                {
+                  "type": "isGreaterThanOrEqualTo",
+                  "prompt": "Slot.Validation.664346497820.1442373707323.952803637523",
+                  "value": "0.1"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "RegisterPersonCallIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "nom_llamada",
+              "type": "AMAZON.FirstName",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.797896793011.1155769137398"
+              }
+            },
+            {
+              "name": "dias_sin_hablar",
+              "type": "AMAZON.NUMBER",
+              "elicitationRequired": false,
+              "confirmationRequired": false,
+              "prompts": {}
+            }
+          ]
+        },
+        {
+          "name": "IngresoIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "ingreso",
+              "type": "AMAZON.NUMBER",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1464248480492.70509491938"
+              },
+              "validations": [
+                {
+                  "type": "isGreaterThan",
+                  "prompt": "Slot.Validation.1464248480492.70509491938.213593993113",
+                  "value": "0"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "EstadoAnimicoIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "estado",
+              "type": "estadoAnimico",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.83746756683.796782104840"
+              },
+              "validations": [
+                {
+                  "type": "hasEntityResolutionMatch",
+                  "prompt": "Slot.Validation.504599751778.455180190141.1379629036880"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "NuevoConsejoIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "otro_estado",
+              "type": "estadoAnimico",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1374989815664.680887123975"
+              }
+            }
+          ]
+        }
+      ],
+      "delegationStrategy": "ALWAYS"
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.653974572406.1040382425372",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "vale. me has dicho que cumples en {month} pero que día?"
+          },
+          {
+            "type": "PlainText",
+            "value": "que día cumples años?"
+          },
+          {
+            "type": "PlainText",
+            "value": "qué día es tu cumpleaños?"
+          },
+          {
+            "type": "PlainText",
+            "value": "dime en que día del mes es tu cumpleaños"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.282358190483.487594834711",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "dime ahora el mes en el que cumples años"
+          },
+          {
+            "type": "PlainText",
+            "value": "en qué mes?"
+          },
+          {
+            "type": "PlainText",
+            "value": " Qué mes es tu cumpleaños?"
+          },
+          {
+            "type": "PlainText",
+            "value": "vale, cumples el día {day} pero,  ¿en qué mes?"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.190694681136.1424851421300.1030431910159",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Por favor dime un día mayor o igual que uno"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.190694681136.1424851421300.837658517617",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Por favor dime un día menor o igual a treinta y uno"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.190694681136.463018349705.1461889218555",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Por favor dime un mes válido"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1253554922892.1358447173887",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "eres de {month} ,  En qué año naciste?"
+          },
+          {
+            "type": "PlainText",
+            "value": "vale. El {day} de {month} . En qué año naciste?"
+          },
+          {
+            "type": "PlainText",
+            "value": "ahora dime el año de tu nacimiento"
+          },
+          {
+            "type": "PlainText",
+            "value": "en qué año has naciste?"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.1253554922892.1358447173887.1026742417738",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "No creo que tengas tantos años. Inténtalo otra vez"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.1253554922892.1358447173887.176185058059",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "No creo que tengas tan pocos años. Inténtalo otra vez"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.556115415325.557149889298",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Cual es el mensaje para el recordatorio?"
+          },
+          {
+            "type": "PlainText",
+            "value": "Genial. Ahora dime el mensaje a leer cuando se active el recordatorio"
+          },
+          {
+            "type": "PlainText",
+            "value": "Vale. Dime por favor el mensaje para el recordatorio"
+          }
+        ]
+      },
+      {
+        "id": "Confirm.Intent.556115415325",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "El mensaje. {message} .Será enviado cuando cumplas años. Lo confirmas?"
+          },
+          {
+            "type": "PlainText",
+            "value": "Te enviaré el siguiente mensaje cuando cumplas años. {message} . De acuerdo?"
+          }
+        ]
+      },
+      {
+        "id": "Confirm.Slot.143702017828.669168405334",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Estás seguro que quieres enviar el mensaje {message} ?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1411901666710.1009647479710",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "¿cuánto dinero puede gastar este mes?"
+          },
+          {
+            "type": "PlainText",
+            "value": "¿cuál es la cantidad?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.664346497820.1442373707323",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "¿Cuánto ha gastado?"
+          },
+          {
+            "type": "PlainText",
+            "value": "¿Cuál es el importe del gasto?"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.1411901666710.1009647479710.1502057759086",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "No puedes registrar una cantidad negativa"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.664346497820.1442373707323.952803637523",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "no puedes gastar menos que cero"
+          }
+        ]
+      },
+      {
+        "id": "Confirm.Intent.797896793011",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "¿El nombre de la persona a la que desea recordar el tiempo sin llamar es {nom_llamada} ?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.797896793011.1155769137398",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "dime cual es el nombre nuevo"
+          },
+          {
+            "type": "PlainText",
+            "value": "como se llama?"
+          },
+          {
+            "type": "PlainText",
+            "value": "cual es el nuevo nombre?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1464248480492.70509491938",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "¿Cuál es el importe del ingreso?"
+          },
+          {
+            "type": "PlainText",
+            "value": "¿De cuánto es el ingreso?"
+          },
+          {
+            "type": "PlainText",
+            "value": "¿Cual es la cantidad de ingreso que quieres añadir?"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.1464248480492.70509491938.213593993113",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "No puedes sumar una cantidad negativa"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.504599751778.455180190141.1379629036880",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Perdona, no he entendido que te pasa. ¿Puedes decírmelo de nuevo?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.83746756683.796782104840",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "¿Cómo te sientes?"
+          },
+          {
+            "type": "PlainText",
+            "value": "¿Cómo se encuentra?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1374989815664.680887123975",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "¿Cómo te encuentras ahora?"
+          },
+          {
+            "type": "PlainText",
+            "value": "¿Cómo te sientes?"
+          }
+        ]
+      }
+    ]
+  },
+  "version": "101"
+}
