@@ -27,5 +27,31 @@ Esta funcionalidad tiene una serie de consejos, que dependiendo de como esté el
 
 https://trello.com/b/krgMGmuA/proyecto-final-de-carrera
 
+  # My personal agent
+  
+This skill is my final degree project, I really like to talk to my conventional agent, Alexa, and I have thought of creating a custom skill to help me in several tasks in my daily life.
+
+This skill can only be executed if you develop it from the Alexa host because the persistence I use are the S3 services which are in the host itself.
+
+The skill my personal agent, is an Alexa skill with different functionalities:
+
+  ## 1. Register birthday date and know the time left to have a birthday.
+  
+In this functionality, first you must register the date of your birthday, for example February 14, 2000. With this date, when you invoke the birthday option, Alexa will tell you how much time is left until your birthday. If your birthday is on the current day, Alexa will congratulate you.
+
+  ## 2. Recording your expected spending for a month and counting it up
+  
+The functionality of registering your expected expenses for the month is useful so that when you receive your salary, you can establish a limit of expenses that you should not exceed until you receive your next salary. For example, you register 200 euros and Alexa will remember it. If you make any expenses, you tell the skill that you have spent X amount of money and the skill will recalculate the remaining amount to spend this month.
+
+  ## 3. Call reminder
+  
+This feature is used to keep track of how long you have been without talking to a certain person. This person will be registered before and when you talk to this person, the counter will be reset to 0 days. This is to remind you how long you haven't talked to your best friend or your mother. In the middle of this pandemic, we can't forget to keep in touch with the people we care about.
+
+  ## 4. Tips
+  
+This functionality has a series of tips, depending on how the user is doing, they will have one tip or another. There are tips of encouragement in case of sadness, tips of congratulations in case of congratulation and some other tips.
+
+### AGILE PLANNING THROUGH A TRELLO BOARD
+https://trello.com/b/krgMGmuA/proyecto-final-de-carrera
 
 
